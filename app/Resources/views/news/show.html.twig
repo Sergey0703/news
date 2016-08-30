@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ news.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ news.title }}</td>
+            </tr>
+            <tr>
+                <th>Announce</th>
+                <td>{{ news.announce }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ news.text }}</td>
+            </tr>
+            <tr>
+                <th>Pubdate</th>
+                <td>{% if news.pubDate %}{{ news.pubDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('news_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('news_edit', { 'id': news.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

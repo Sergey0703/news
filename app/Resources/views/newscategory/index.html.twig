@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>NewsCategory list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for newsCategory in newsCategories %}
+            <tr>
+                <td><a href="{{ path('newscategory_show', { 'id': newsCategory.id }) }}">{{ newsCategory.id }}</a></td>
+                <td>{{ newsCategory.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('newscategory_show', { 'id': newsCategory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('newscategory_edit', { 'id': newsCategory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('newscategory_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

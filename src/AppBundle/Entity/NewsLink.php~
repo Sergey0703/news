@@ -1,0 +1,50 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NewsLink
+ *
+ * @ORM\Table(name="news_link", indexes={@ORM\Index(name="fk_news_link_news1", columns={"news_id"})})
+ * @ORM\Entity
+ */
+class NewsLink
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="string", length=255, nullable=true)
+     */
+    private $text;
+
+    /**
+     * @var \News
+     *
+     * @ORM\ManyToOne(targetEntity="News")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="news_id", referencedColumnName="id")
+     * })
+     */
+    private $news;
+
+
+}
+
